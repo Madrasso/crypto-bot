@@ -1,0 +1,28 @@
+{
+  "name": "crypto-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madrasso/crypto-bot.git"
+  },
+  "keywords": [
+    "crypto",
+    "vk",
+    "mini-apps"
+  ],
+  "author": "madrasso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Madrasso/crypto-bot/issues"
+  },
+  "homepage": "https://github.com/Madrasso/crypto-bot#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.2"
+  }
+}
