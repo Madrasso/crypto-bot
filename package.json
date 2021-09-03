@@ -1,6 +1,6 @@
 {
   "name": "crypto-bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,9 @@
   "homepage": "https://github.com/Madrasso/crypto-bot#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "chalk": "^4.1.2"
+    "chalk": "^4.1.2",
+    "prettytable": "^0.3.1",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2"
   }
 }

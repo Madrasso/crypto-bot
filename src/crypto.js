@@ -3,32 +3,41 @@ const chalk = require('chalk');
 
 module.exports = class Crypto {
 
-    constructor(access_token, id) {
+    constructor(id, access_token, proxy) {
         if (!access_token)
             throw new Error('access_token not specified');
 
         this.id = id;
+        this.proxy = proxy;
         this.access_token = access_token;
     }
 
     async request(method = '', params = {}) {
-        return await axios(`https://baguette-game.com:1000/${method}`, {
-            method: "POST", headers: {'Content-Type': 'application/json'},
-            data: {params: this.params, id: params.id || this.user_id, ... params}
-        }).then(response => response.data);
+        try {
+            return await axios(`https://baguette-game.com:1000/${method}`, {
+                method: "POST", headers: {'Content-Type': 'application/json'},
+                data: {params: this.params, id: params.id || this.user_id, ... params},
+                proxy: this.proxy ? {protocol: this.proxy.protocol, host: this.proxy.host, port: this.proxy.port} : false,
+            }).then(response => response.data);
+        } catch(e) {
+            console.log(e);
+        }
     }
 
-    async getAppParams() {
-        const params = await axios(`https://api.vk.com/method/apps.get?access_token=${this.access_token}&v=5.131&app_id=7932067&platform=web`);
-        if (!params.data.response.items[0].webview_url) {
-            this.log('Не удалось авторизоваться.');
+    async getAppParams(bool) {
+        const params = await axios(`https://api.vk.com/method/apps.get?access_token=${this.access_token}&v=5.131&app_id=7932067&platform=web`, {
+            proxy: this.proxy ? {protocol: this.proxy.protocol, host: this.proxy.host, port: this.proxy.port} : false,
+        });
+        
+        if (!params?.data?.response?.items[0].webview_url) {
+            this.log('Не удалось авторизоваться.', params?.data?.error?.error_msg);
             return false;
         }
 
         this.params = params.data.response.items[0].webview_url.match(/index\.html\?(.*)/)[1];
         this.user_id = this.params.match(/vk_user_id=(\d+)/)[1];
 
-        this.log('Аккаунт успешно авторизован.');
+        if (!bool) this.log('Аккаунт успешно авторизован.');
         return true;
     }
 
@@ -64,10 +73,11 @@ module.exports = class Crypto {
         const stats = await this.getStats();
         const crypts = this.getCrypts();
 
-        let recommended = {willPayOff: 9999};
+        let recommended = {willPayOff: 9999, willPayOffF: 9999};
         for (let i = 0; i < crypts.length; i++) {
             crypts[i].price = crypts[i].price * (2 ** stats[crypts[i].crypt_id]);
             crypts[i].willPayOff = crypts[i].price / crypts[i].booty;
+            crypts[i].willPayOffF = crypts[i].price / (stats.in_minute_mining + crypts[i].booty);
 
             if (recommended.willPayOff > crypts[i].willPayOff)
                 recommended = crypts[i];
