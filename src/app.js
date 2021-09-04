@@ -24,7 +24,7 @@ async function run() {
             let prices = await crypto.getPrices(); account.update({balance: prices.balance});
 
             if (prices.balance < account.minBalance + prices.recommended.price)
-                return 1;
+                return 700;
 
             const response = await crypto.buy(prices.recommended.name)
             if (response.status === 'Успешная покупка')
