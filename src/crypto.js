@@ -66,6 +66,11 @@ module.exports = class Crypto {
             {name: 'Terra', crypt_id: 'terra', booty: 200, price: 13500},
             {name: 'Litecoin', crypt_id: 'litecoin', booty: 250, price: 20000},
             {name: 'Filecoin', crypt_id: 'filecoin', booty: 300, price: 30000},
+            {name: 'Tron', crypt_id: 'tron', booty: 400, price: 40000},
+            {name: 'Monero', crypt_id: 'monero', booty: 500, price: 55000},
+            {name: 'Theta', crypt_id: 'theta', booty: 600, price: 75000},
+            {name: 'Aave', crypt_id: 'aave', booty: 750, price: 90000},
+            {name: 'Kusama', crypt_id: 'kusama', booty: 1000, price: 120000},
         ];
     }
 
