@@ -73,7 +73,7 @@ module.exports = class Crypto {
         const stats = await this.getStats();
         const crypts = this.getCrypts();
 
-        let recommended = {willPayOff: 9999, willPayOffF: 9999};
+        let recommended = {willPayOff: 9e99, willPayOffF: 9e99};
         for (let i = 0; i < crypts.length; i++) {
             crypts[i].price = crypts[i].price * (2 ** stats[crypts[i].crypt_id]);
             crypts[i].willPayOff = crypts[i].price / crypts[i].booty;

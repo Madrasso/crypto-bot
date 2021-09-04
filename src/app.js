@@ -49,11 +49,13 @@ async function run() {
             await account.update({uid: crypto.user_id});
         }
 
-        if (!proxy[i]) {
-            const delay = await smartBuy(crypto, account);
-            await (new Promise(resolve => setTimeout(resolve, delay)));
-        } else
-            smartBuy(crypto, account);
+        if (settings.smartBuy) {
+            if (!proxy[i]) {
+                const delay = await smartBuy(crypto, account);
+                await (new Promise(resolve => setTimeout(resolve, delay)));
+            } else
+                smartBuy(crypto, account);
+        }
     }
 
     setTimeout(run, 5555);

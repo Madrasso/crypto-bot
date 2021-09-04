@@ -7,9 +7,10 @@ module.exports = (commands) => {
             {cyan.bold stats}
             {cyan.bold transfer} \{from_id\} \{to_id\} \{ammount\}
             {cyan.bold transferAll} \{to_id\} \{ammount\}
+            {cyan.bold smartBuy}
 
             {cyan.bold add} \{access_token\} - adding account
-            {cyan.bold minBalance} \{minBalance\} - adding account
+            {cyan.bold minBalance} \{account_id\} \{minBalance\}
         `);
     };
 

@@ -8,4 +8,14 @@ module.exports = (commands) => {
         
     };
 
+    commands.prototype.smartBuy = async function () {
+        this.settings.smartBuy = !this.settings.smartBuy;
+
+        console.log(
+            this.chalk.cyan.bold(`[${new Date().toISOString()}] `)
+            + 'Автоматическая покупка крипты '
+            + this.chalk.red.bold(this.settings.smartBuy ? 'включена' : 'выключена')
+        );
+    }
+
 }
