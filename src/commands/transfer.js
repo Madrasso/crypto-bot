@@ -41,7 +41,7 @@ module.exports = (commands) => {
             }
 
             if (!crypto.proxy)
-                await (new Promise(resolve => setTimeout(resolve, 1111))); // ? too many request...
+                await (new Promise(resolve => setTimeout(resolve, 5555))); // ? too many request...
         }
     };
 
