@@ -15,9 +15,11 @@ module.exports = (commands) => {
             const stats = await crypto.getStats();
 
             statistics.accounts++;
-            statistics.crypts += stats.sum;
-            statistics.balance += stats.balance;
-            statistics.profit += stats.in_minute_mining;
+            statistics.crypts += stats?.sum;
+            statistics.balance += stats?.balance;
+            statistics.profit += stats?.in_minute_mining;
+
+            if (!stats.sum) console.log(stats);
 
             if (this.settings.style == "table")
                 table.addRow([crypto.id, crypto.user_id, stats.balance.toLocaleString(), stats.sum.toLocaleString(), stats.in_minute_mining.toLocaleString(), String(crypto.recommendedPrice).toLocaleString()])
