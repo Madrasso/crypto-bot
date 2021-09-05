@@ -19,11 +19,14 @@ module.exports = (commands) => {
             statistics.balance += stats?.balance;
             statistics.profit += stats?.in_minute_mining;
 
-            if (!stats.sum) console.log(stats);
+            if (!stats?.sum) console.log(stats);
 
             if (this.settings.style == "table")
                 table.addRow([crypto.id, crypto.user_id, stats.balance.toLocaleString(), stats.sum.toLocaleString(), stats.in_minute_mining.toLocaleString(), String(crypto.recommendedPrice).toLocaleString()])
             else table += this.chalk.red.bold(`[${crypto.user_id}][№${crypto.id}] `) + this.chalk`Крипты: {red.bold ${stats.sum.toLocaleString()}}; Прибыль: {red.bold ${stats.in_minute_mining.toLocaleString()}}; Баланс: {red.bold ${stats.balance.toLocaleString()}}; Рекоммендованая покупка: {red.bold ${String(crypto.recommendedPrice).toLocaleString()}};\n`;
+
+            if (!crypto.proxy)
+                await (new Promise(resolve => setTimeout(resolve, 888))); // ? too many request...
         }
         
         console.log();
