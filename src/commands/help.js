@@ -5,8 +5,9 @@ module.exports = (commands) => {
         Available commands:
 
             {cyan.bold stats}
-            {cyan.bold transfer} \{from_id\} \{to_id\} \{ammount\}
-            {cyan.bold transferAll} \{to_id\} \{ammount\}
+            {cyan.bold transfer} \{from_id\} \{to_id\} \{amount\}
+            {cyan.bold transferAll} \{to_id\} \{amount\}
+            {cyan.bold autoTransfer} \{to_id\} \{amount\} \{interval in min\}
             {cyan.bold smartBuy}
 
             {cyan.bold add} \{access_token\} - adding account

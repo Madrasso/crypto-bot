@@ -41,8 +41,15 @@ module.exports = (commands) => {
             }
 
             if (!crypto.proxy)
-                await (new Promise(resolve => setTimeout(resolve, 5555))); // ? too many request...
+                await (new Promise(resolve => setTimeout(resolve, 1111))); // ? too many request...
         }
     };
+
+    commands.prototype.autoTransfer = async function(to_id, amount, interval) {
+        if (!to_id || !amount || !interval)
+            return this.error(`use autoTransfer {to_id} {amount} {interval}`);
+
+        setInterval(this.transferAll, Number(interval) * 60 * 1000, to_id, amount);
+    }
 
 }
