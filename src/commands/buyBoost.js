@@ -4,7 +4,7 @@ module.exports = (commands) => {
         if (!id || !boost)
             return this.error(`use buyBoost {id} {boost}`);
 
-        const id = this.crypto_list[from_id] || this.crypto_list.find(crypto => crypto.user_id == id);
+        id = this.crypto_list[from_id] || this.crypto_list.find(crypto => crypto.user_id == id);
         if (!id)
             return this.error(`account not found`);
 
