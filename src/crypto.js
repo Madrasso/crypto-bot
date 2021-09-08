@@ -102,6 +102,13 @@ module.exports = class Crypto {
         return this.request(`BuyUpgrade${crypt}`);
     }
 
+    async buyBoost(boost) {
+        if (!boost)
+            throw new Error('boost name not specified');
+
+        return this.request(`BuyBoost${boost}`);
+    }
+
     async transfer(amount, recipient_id) {
         if (!amount) 
             throw new Error('amount not specified');
