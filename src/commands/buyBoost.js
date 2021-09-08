@@ -1,6 +1,6 @@
 module.exports = (commands) => {
 
-    commands.prototype.transfer = async function(id, boost) {
+    commands.prototype.buyBoost = async function(id, boost) {
         if (!id || !boost)
             return this.error(`use buyBoost {id} {boost}`);
 
